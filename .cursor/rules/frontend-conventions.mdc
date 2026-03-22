@@ -1,0 +1,22 @@
+---
+description: Frontend coding conventions for the Atlas Nuxt 3 app
+globs: frontend/**/*.{vue,ts,js}
+alwaysApply: false
+---
+
+# Frontend Conventions
+
+## Imports
+
+- Use **absolute imports only** via the `~/` alias (Nuxt's project root). Never use relative imports (`./`, `../`).
+  - Example: `import { LAYER_OPTIONS } from "~/composables/explorer/useLayerToggle"` (not `from "../composables/useLayerToggle"`)
+- Prefer Nuxt auto-imports for composables, components, and utilities when available. Only add explicit imports for types or named non-default exports that aren't auto-imported.
+
+## Indentation
+
+- Use **4 spaces** for all indentation (templates, scripts, styles, and config files).
+
+## What NOT to Do
+
+- Do not use relative imports (`./`, `../`) anywhere.
+- Do not use 2-space indentation.

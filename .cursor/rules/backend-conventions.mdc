@@ -1,0 +1,43 @@
+---
+description: Python coding conventions for the Atlas backend
+globs: backend/**/*.py
+alwaysApply: false
+---
+
+# Python Conventions
+
+## Imports
+
+- Use **absolute imports only**. Never use relative imports (`from .`, `from ..`).
+  - Example: `from geography.models import Geography` (not `from .models import Geography`)
+- Always add `from __future__ import annotations` as the first import in every file.
+
+## Type Hints
+
+- All function/method **parameters** must have type annotations.
+- All function/method **return types** must be annotated.
+- Use `X | None` union syntax (enabled by `from __future__ import annotations`).
+- Variable-level type hints are not required.
+
+## Architecture
+
+### Service Classes
+
+- Business logic belongs in **service classes** inside `/services/` folders.
+- Each service lives in its own file: `/services/some_service.py` containing `class SomeService`.
+- Use `@staticmethod` for methods that don't need instance state.
+- Services are organized within their parent module:
+  - `geography/services/geography_service.py` → `GeographyService`
+  - `housing/services/housing_data_service.py` → `HousingDataService`
+
+### Utility Files
+
+- Small, standalone helper functions that don't belong to any service go in a `utils.py` file.
+- Example: `data_pipeline/utils.py` for generic helpers like `safe_int`, `safe_float`, `chunk_list`.
+
+### What NOT to Do
+
+- Do not create standalone functions at module level for business logic.
+- Do not create a single `services.py` file; use a `services/` directory with individual files.
+- Do not use relative imports anywhere.
+- Do not put business logic in `views.py` files. Views should delegate to services.

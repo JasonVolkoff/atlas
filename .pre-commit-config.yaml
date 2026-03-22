@@ -1,0 +1,47 @@
+# Install: pip install pre-commit && pre-commit install
+# Run all hooks on the repo: pre-commit run --all-files
+
+default_install_hook_types: [pre-commit]
+default_stages: [pre-commit]
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [--maxkb=500]
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        files: ^backend/
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.4
+    hooks:
+      - id: ruff-format
+        types_or: [python]
+        files: ^backend/
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.1.2
+    hooks:
+      - id: flake8
+        files: ^backend/
+
+  - repo: local
+    hooks:
+      # Paths are repo-relative (e.g. frontend/foo.vue). After cd frontend, strip that prefix.
+      - id: prettier
+        name: prettier
+        language: system
+        entry: bash -c 'cd "$(git rev-parse --show-toplevel)/frontend" && for f in "$@"; do npx prettier --write "${f##*frontend/}"; done' --
+        files: ^frontend/
+        exclude: (^frontend/node_modules/|^frontend/\.nuxt/|^frontend/package-lock\.json$|^frontend/\.prettierignore$|^frontend/Dockerfile$)

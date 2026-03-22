@@ -1,0 +1,13 @@
+node_modules
+.nuxt
+.output
+.nitro
+.cache
+dist
+coverage
+*.min.js
+package-lock.json
+
+# No Prettier parser (avoid pre-commit / CLI errors when paths are explicit)
+.prettierignore
+Dockerfile

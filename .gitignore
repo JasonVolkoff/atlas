@@ -1,0 +1,47 @@
+# Python
+.ruff_cache/
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Django
+*.sqlite3
+staticfiles/
+media/
+
+# Node
+node_modules/
+.output/
+.nuxt/
+.nitro/
+.cache/
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data files (large)
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.zip
+*.csv

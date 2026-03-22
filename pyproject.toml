@@ -1,0 +1,16 @@
+# Formatter only; lint/import order live in setup.cfg (flake8 + isort + pre-commit).
+# Keep line-length identical to setup.cfg [flake8] max-line-length.
+[tool.ruff]
+target-version = "py312"
+line-length = 99
+src = ["backend"]
+extend-exclude = [
+    "**/migrations/**",
+    ".venv",
+    "venv",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
