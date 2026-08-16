@@ -1,6 +1,6 @@
 # Atlas
 
-A map-based housing intelligence platform for data-driven real estate investors.
+A map-based housing intelligence platform, capable of displaying housing metrics over set periods time
 
 ## Stack
 
@@ -10,7 +10,6 @@ A map-based housing intelligence platform for data-driven real estate investors.
 
 ## Prerequisites
 
-- Docker & Docker Compose
 - A [Mapbox access token](https://account.mapbox.com/access-tokens/) (free tier works)
 
 ## Quick Start
@@ -60,31 +59,6 @@ atlas/
 See the plan document for full architecture details.
 
 ## Development
-
-### Code style (pre-commit)
-
-Python style is defined in **`setup.cfg`** (`[flake8]`, `[isort]`). Pre-commit runs **isort**, **Ruff format**, and **Flake8** on `backend/`, plus **Prettier** on `frontend/`.
-
-**Installing the Python package is not enough.** Git only runs hooks after you register them:
-
-```bash
-pip install -r requirements-dev.txt   # or: pip install pre-commit
-pre-commit install                    # required: creates .git/hooks/pre-commit
-```
-
-Without `pre-commit install`, commits are **not** checked. Avoid `git commit --no-verify` if you want hooks to run.
-
-**IDE vs Flake8:** Editor plugins may use a different max line length than **`setup.cfg` / `pyproject.toml` (99)**—align them to avoid noise.
-
-Run on everything (e.g. before opening a PR):
-
-```bash
-pre-commit run --all-files
-```
-
-Requires **Node** dependencies for Prettier: `cd frontend && npm install` (the hook runs `npx prettier` from `frontend/`).
-
-**Git-tracked files:** `pre-commit` only runs on paths Git knows about. After adding new files or folders, run `git add` so hooks apply to them (or stage before committing).
 
 **Backend only (without Docker):**
 
